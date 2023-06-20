@@ -11,7 +11,9 @@ ML model: SVC (hard-coded for now)
 
 API:
 POST /train
+
 Request: { "url": {dataset url}}
+
 Response: { "result": {task/model_id} }
 => Initiate Training model with input dataset
 
@@ -25,7 +27,7 @@ Response: {
 POST /predict
 Request: {
     "model_id": <model_id>,
-    "prediction_input": <list_of_datapoint>. Sample: [[5.1,3.5,1.4,0.2], [5.1,3.5,1.4,0.2], [6.5,3.2,5.1,2.0]]
+    "prediction_input": <list_of_datapoint> Sample: [[5.1,3.5,1.4,0.2], [5.1,3.5,1.4,0.2], [6.5,3.2,5.1,2.0]]
 }
 Response: { "prediction": <list_of_prediction> Sample: ['Iris-setosa' 'Iris-setosa' 'Iris-virginica']}
 
