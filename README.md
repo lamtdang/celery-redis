@@ -6,7 +6,9 @@ Data source: https://raw.githubusercontent.com/jbrownlee/Datasets/master/iris.cs
 Data format: ['sepal-length', 'sepal-width', 'petal-length', 'petal-width', 'class']
 
 ML model: SVC (hard-coded for now)
+
 -----------------------API Design----------------------
+
 API:
 POST /train
 Request: { "url": {dataset url}}
@@ -28,11 +30,13 @@ Request: {
 Response: { "prediction": <list_of_prediction> Sample: ['Iris-setosa' 'Iris-setosa' 'Iris-virginica']}
 
 ------------------Flow----------------------------
+
 Flow:
 Training: When requested -> we queue task train_ml which train ML model with input data -> the model is trained, dumps to binary with pickle and saved in Redis Broker
 Prediction: When requested -> we use model_id to fetch model from Redis -> convert model from binary to model -> use it to predict datapoint -> return result
 
 -------------------------------Tech Stack---------------------------------------
+
 Celery:
 - For task queue
 - Default number of concurrent task = number of core available
@@ -41,6 +45,7 @@ Redis:
 - Message Broker + cache
 
 ---------------------------Execution------------------------------------
+
 Celery start worker: 
 celery -A celeryq.make_celery worker --loglevel INFO --concurrency {number_of_core}
 
